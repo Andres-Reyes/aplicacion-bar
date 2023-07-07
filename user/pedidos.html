@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido-user
+    </title>
+    <link rel="icon" href="img/bares.jpeg">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="../img/bares.jpeg" width="60px" height="60px" alt="" class="btn-sm col-xs-2 margin-left">
+        <a id="titulo" class="navbar-brand" href="inicio.html">Pedido-User</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="pedidos.html">Pedido</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="reserva.html">Reserva</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button type="button" class="btn btn-light" id="sesiónC" onclick="cerrar()">CERRAR SESIÓN</button>
+            </form>
+        </div>
+    </nav>
+    <hr>
+    <!-- inicio del cuerpo -->
+    <h1 id="titulo">REGISTRO DE PEDIDO</h1>
+    <hr>
+    <div id="borde">
+        <div class="container">
+            <form action=""><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>NOMBRE:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="referencia">
+                    </div><br>
+                    <div class="col">
+                        <h4>CEDULA:</h4>
+                        <input type="text" class="form-control col-md-12" type="text" name="" id="tipo">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>CANTIDAS DE BEBIDAS:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="marca">
+                    </div>
+                    <div class="col">
+                        <h4>ESPECIFIQUE QUE BEBIDAS DESEA:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="modelo">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>NUMERO DE MESA:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="color">
+                    </div>
+                    <div class="col">
+                        <h4>ADICIONAL:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="tamanio">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>ESTADO:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="estado" readonly="true" value="pendiente">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-2">
+                        <button type="button" class="btn btn-dark center" onclick="RegistrarPedidos()">Registrar Pedido</button>
+                    </div>
+                    <div class="col-md-5"></div>
+                </div>
+            </form><br>
+        </div>
+    </div>
+    <hr>
+    <!-- fin del cuerpo -->
+    <!--conexion a firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <!--  script para conexion y uso de firebase -->
+    <script src="../javascript/conexion.js"></script>
+    <script src="../javascript/login.js"></script>
+    <script src="../javascript/servicioUSer.js"></script>
+    <!-- script de boostrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <scride}eeept src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        
+</body>
+
+</html>

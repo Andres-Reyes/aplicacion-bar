@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesas-Admin
+    </title>
+    <link rel="icon" href="img/bares.jpeg">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/estilos.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="../img/bares.jpeg" width="60px" height="60px" alt="" class="btn-sm col-xs-2 margin-left">
+        <a id="titulo" class="navbar-brand" href="inicio.html">MESAS-ADMIN</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="productos.html">Productos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="mesas.html">Mesas </a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="pedidos.html">Pedidos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="reservas.html">Reservas</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <button type="button" class="btn btn-light" id="sesiónC" onclick="cerrar()">CERRAR SESIÓN</button>
+            </form>
+        </div>
+    </nav>
+    <hr>
+
+
+    <!-- inicio del cuerpo -->
+    <hr>
+    <h1 id="titulo">REGISTRO DE MESAS</h1>
+    <div id="borde">
+        <div class="container">
+            <form action=""><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>REFERENCIA:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="referencia">
+                    </div><br>
+                    <div class="col">
+                        <h4>TIPO:</h4>
+                        <input type="text" class="form-control col-md-12" type="text" name="" id="tipo">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>MARCA:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="marca">
+                    </div>
+                    <div class="col">
+                        <h4>MODELO:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="modelo">
+                    </div>
+                </div><br>
+                <div class="row">
+                    <div class="col">
+                        <h4>COLOR:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="color">
+                    </div>
+                    <div class="col">
+                        <h4>TAMAÑO:</h4>
+                        <input type="text" class="form-control col-md-12" name="" id="tamanio">
+                    </div>
+                </div>
+                <div><br>
+                    <hr>
+                    <h4>IMAGEN DEL PRODUCTO:</h4>
+                    <input type="file" id="inputFileToLoad" class="form-control" placeholder="photo" />
+                    <!-- <i class="glyphicon glyphicon-fire form-control-feedback"></i><br> -->
+                    <input type="text" id="response" class="form-control" readonly="true" placeholder="Base-64 value" />
+                    <i class="glyphicon glyphicon-globe form-control-feedback"></i><br>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5"></div>
+                    <div class="col-md-4">
+                        <button type="button" class="btn btn-dark " id="buttonGuardarU" onclick="RegistrarMesas()">Registrar Producto</button>
+                    </div>
+                    <div class="col-md-3"></div>
+                </div>
+            </form><br>
+        </div>
+    </div>
+    <hr>
+    <h1 id="titulo">DATOS DE LOS MESAS AGREGADAS</h1>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+
+                    <th scope="col">REFERENCIA </th>
+                    <th scope="col">TIPO</th>
+                    <th scope="col">MARCA</th>
+                    <th scope="col">MODELO</th>
+                    <th scope="col">COLOR </th>
+                    <th scope="col">TAMAÑO </th>
+                    <th scope="col">IMAGEN</th>
+                    <th scope="col">ACTUALIZAR</th>
+
+                </tr>
+            </thead>
+            <tbody id="tablaMostrar"></tbody>
+        </table><br>
+    </div>
+
+    <div class="container">
+        <div id="mostrar">
+
+        </div>
+    </div>
+    <!-- fin del cuerpo -->
+    <!--conexion a firebase-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-analytics.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+    <!--  script para conexion y uso de firebase -->
+    <script src="../javascript/conexion.js"></script>
+    <script src="../javascript/login.js"></script>
+    <script src="../javascript/servicioAdmin.js"></script>
+    <!-- script de boostrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <scride}eeept src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+        //Convert Image to Base64
+        $(document).ready(function() {
+            $("#inputFileToLoad").change(function() {
+                var filesSelected = document.getElementById("inputFileToLoad").files;
+                if (filesSelected.length > 0) {
+                    var fileToLoad = filesSelected[0];
+                    var fileReader = new FileReader();
+                    fileReader.onload = function(fileLoadedEvent) {
+                        var base64value = fileLoadedEvent.target.result;
+                        $("#response").val(base64value);
+                    };
+                    fileReader.readAsDataURL(fileToLoad);
+                }
+            });
+        });
+    </script>
+    <!-- escript para mistrar los valores para actualizar -->
+    <script>
+        var db = firebase.firestore();
+        var tabla = document.getElementById('tablaMostrar');
+        db.collection("Mesas").onSnapshot((querySnapshot) => {
+            tabla.innerHTML = '';
+            querySnapshot.forEach((doc) => {
+                tabla.innerHTML += `
+    <tr>
+    <td>${doc.data().uno}</td>
+    <td>${doc.data().dos}</td>
+    <td>${doc.data().tres}</td>
+    <td>${doc.data().cuatro}</td>
+    <td>${doc.data().cinco}</td>
+    <td>${doc.data().seis}</td>
+    <td><img src="${doc.data().siete}" width="80px" height="60px" alt=""></td>
+    <td><a class="btn btn-white" id="bottonModificarU"  onclick="editar('${doc.id}','${doc.data().uno}','${doc.data().dos}','${doc.data().tres}','${doc.data().cuatro}','${doc.data().cinco}','${doc.data().seis}','${doc.data().siete}')"><img id="modificarU" width="30px" height="30px" src="../img/modificar.png" alt=""></a> <a class="btn btn-white" id="buttonEliminarU" onclick="Eliminar('${doc.id}')"><img id="eliminarU" width="30px" height="30px" src="../img/eliminar.png" alt=""></a></td>
+    
+    </tr>
+    `;
+
+
+
+            });
+        });
+
+
+
+        //cuando presione el botton modificar
+        function editar(id, uno, dos, tres, cuatro, cinco, seis, siete) {
+            var db = firebase.firestore();
+
+            //recibiendo los valores de los campos
+            document.getElementById('referencia').value = uno;
+            document.getElementById('tipo').value = dos;
+            document.getElementById('marca').value = tres;
+            document.getElementById('modelo').value = cuatro;
+            document.getElementById('color').value = cinco;
+            document.getElementById('tamanio').value = seis;
+            document.getElementById('response').value = siete;
+
+
+
+            $(document).ready(function() {
+                $("#inputFileToLoad").change(function() {
+                    var filesSelected = document.getElementById("inputFileToLoad").files;
+                    if (filesSelected.length > 0) {
+                        var fileToLoad = filesSelected[0];
+                        var fileReader = new FileReader();
+                        fileReader.onload = function(fileLoadedEvent) {
+                            var base64value = fileLoadedEvent.target.result;
+                            console.log(base64value);
+                            $("#response").val(base64value);
+                        };
+                        fileReader.readAsDataURL(fileToLoad);
+                    }
+                });
+
+            });
+
+            var boton = document.getElementById('buttonGuardarU');
+
+
+            boton.onclick = function() {
+                var washingtonRef = db.collection("Mesas").doc(id);
+
+                var uno = document.getElementById("referencia").value;
+                var dos = document.getElementById("tipo").value;
+                var tres = document.getElementById("marca").value;
+                var cuatro = document.getElementById("modelo").value;
+                var cinco = document.getElementById("color").value;
+                var seis = document.getElementById("tamanio").value;
+                var siete = document.getElementById("response").value;
+
+
+                return washingtonRef.update({
+                        uno: uno,
+                        dos: dos,
+                        tres: tres,
+                        cuatro: cuatro,
+                        cinco: cinco,
+                        seis: seis,
+                        siete: siete,
+
+                    })
+                    .then(function() {
+                        alert("MODIFICACION EXITOSA");
+                        document.getElementById("mostrar").style.display = "none";
+                    })
+                    .catch(function(error) {
+                        // The document probably doesn't exist.
+                        console.error("NO SE PUEDO MODIFICAR: ", error);
+                    });
+
+            }
+        }
+
+        //cuando presione el botton eliminar
+        function Eliminar(id) {
+            document.getElementById("mostrar").style.display = "none";
+            var db = firebase.firestore();
+            db.collection("Mesas").doc(id).delete().then(function() {
+                alert("MESA ELIMINADA CON EXITO");
+            }).catch(function(error) {
+                console.error("NO SE PUDO ELIMINAR: ", error);
+            });
+        }
+    </script>
+</body>
+
+</html>
